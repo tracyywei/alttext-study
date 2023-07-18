@@ -8,8 +8,9 @@
         $(document).ready(function() {
             $(".misspelled").click(function() {
                 var word = $(this).data("word");
+                console.log("{{ suggestions[word] }}");
                 var suggestion = "{{ suggestions[word] }}";
-                $("#sidebar").text("Suggestion: " + suggestion);
+                $("#suggestionCard").text("Spelling mistake for" + word + ". You may mean: " + suggestion);
             });
         });
     </script>
@@ -25,9 +26,9 @@
       </form>
       
       <div id="sidebar">
-        <h2>suggestions</h2>
+        <p>{{ corrected_text | safe }}</p>
+        <div id="suggestionCard"></div>
       </div>
     </div>
-    <p>{{ corrected_text | safe }}</p>
   </body>
 </html>
