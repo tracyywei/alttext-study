@@ -42,6 +42,12 @@ button {
   flex-direction: row;
 }
 
+.misspelled {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 #textarea {
   flex-grow: 1;
   display: flex;

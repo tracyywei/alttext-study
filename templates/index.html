@@ -3,6 +3,16 @@
   <head>
     <title>Spellcheck</title>
     <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".misspelled").click(function() {
+                var word = $(this).data("word");
+                var suggestion = "{{ suggestions[word] }}";
+                $("#sidebar").text("Suggestion: " + suggestion);
+            });
+        });
+    </script>
   </head>
   <body>
     <header>
@@ -18,7 +28,6 @@
         <h2>suggestions</h2>
       </div>
     </div>
-    <p>Corrected text:</p>
     <p>{{ corrected_text | safe }}</p>
   </body>
 </html>

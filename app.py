@@ -12,18 +12,20 @@ def getText():
         wordList = myText.split()
         misspelled = spell.unknown(wordList)
         corrected_text = ""
+        suggestions = {}
         for word in wordList:
             if word in misspelled:
-                corrected_text += '<span style="color: red;">' + word + '</span> '
+                corrected_text += '<span class="misspelled" data-word="' + word + '">' + word + '</span> '
+                suggestions[word] = spell.correction(word)
             else:
                 corrected_text += word + ' '
-        return render_template("index.html", corrected_text=corrected_text)
-    return render_template("index.html")
+        return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions)
+    return render_template("index.html", corrected_text="", suggestions={})
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", corrected_text="", suggestions={})
 
 
 if __name__ == "__main__":
