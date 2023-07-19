@@ -11,7 +11,7 @@ h1 {
 
 h2 {
   font-size: 18px;
-  color: white;
+  color: rgb(0, 16, 135);
   margin: 0.5rem;
 }
 
@@ -48,6 +48,18 @@ button {
   text-decoration: underline;
   cursor: pointer;
 }
+
+#suggestionCard {
+  background-color: rgb(166, 218, 255);
+  padding: 1rem;
+  border-radius: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+#suggestionCard.hidden {
+  display: none;
+}
+
 
 #textarea {
   flex-grow: 1;

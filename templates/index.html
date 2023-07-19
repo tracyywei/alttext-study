@@ -4,15 +4,20 @@
 <head>
   <title>Spellcheck</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
       var suggestions = JSON.parse('{{ suggestions|safe }}');
 
-      $(".misspelled").click(function () {
+      $(".misspelled").hover(function () {
         var word = $(this).data("word");
         var suggestion = suggestions[word];
-        $("#suggestionCard").text("Spelling mistake for " + word + ". You may mean: " + suggestion);
+        var elem = document.querySelector("#suggestionCard").cloneNode(true);
+        elem.classList.remove("hidden");
+        elem.querySelector("#error").textContent = "Spelling mistake for " + word;
+        elem.querySelector("#suggestions").textContent = "You may mean: " + suggestion;
+        document.querySelector("#suggContainer").append(elem);
       });
     });
   </script>
@@ -29,10 +34,17 @@
     </form>
 
     <div id="sidebar">
-      <p>{{ corrected_text | safe }}</p>
-      <div id="suggestionCard"></div>
+      <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
+      <div id="suggContainer">
+        <div id="suggestionCard" class="hidden">
+          <h3 id="error"></h3>
+          <p id="suggestions"></p>
+        </div>
+      </div>
+      <button type="submit">submit edit</button>
     </div>
   </div>
+
 </body>
 
 </html>
