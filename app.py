@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request, render_template
 from spellchecker import SpellChecker
 
@@ -19,7 +20,7 @@ def getText():
                 suggestions[word] = spell.correction(word)
             else:
                 corrected_text += word + ' '
-        return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions)
+        return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions))
     return render_template("index.html", corrected_text="", suggestions={})
 
 

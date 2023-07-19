@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Spellcheck</title>
-    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".misspelled").click(function() {
-                var word = $(this).data("word");
-                console.log("{{ suggestions[word] }}");
-                var suggestion = "{{ suggestions[word] }}";
-                $("#suggestionCard").text("Spelling mistake for" + word + ". You may mean: " + suggestion);
-            });
-        });
-    </script>
-  </head>
-  <body>
-    <header>
-        <h1>spellcheck</h1>
-    </header>
-    <div class="widthContainer">
-      <form id="textarea" action="{{ url_for('getText')}}" method="post">
-          <input id="text-input" placeholder="enter text here..." name="myText"></input>
-          <button type="submit">check</button>
-      </form>
-      
-      <div id="sidebar">
-        <p>{{ corrected_text | safe }}</p>
-        <div id="suggestionCard"></div>
-      </div>
+
+<head>
+  <title>Spellcheck</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var suggestions = JSON.parse('{{ suggestions|safe }}');
+
+      $(".misspelled").click(function () {
+        var word = $(this).data("word");
+        var suggestion = suggestions[word];
+        $("#suggestionCard").text("Spelling mistake for " + word + ". You may mean: " + suggestion);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>spellcheck</h1>
+  </header>
+  <div class="widthContainer">
+    <form id="textarea" action="{{ url_for('getText')}}" method="post">
+      <input id="text-input" placeholder="enter text here..." name="myText"></input>
+      <button type="submit">check</button>
+    </form>
+
+    <div id="sidebar">
+      <p>{{ corrected_text | safe }}</p>
+      <div id="suggestionCard"></div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
