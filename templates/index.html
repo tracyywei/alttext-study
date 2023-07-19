@@ -10,7 +10,7 @@
     $(document).ready(function () {
       var suggestions = JSON.parse('{{ suggestions|safe }}');
 
-      $(".misspelled").hover(function () {
+      $(".misspelled").click(function () {
         var word = $(this).data("word");
         var suggestion = suggestions[word];
         var elem = document.querySelector("#suggestionCard").cloneNode(true);
@@ -30,18 +30,18 @@
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">
       <input id="text-input" placeholder="enter text here..." name="myText"></input>
+      <h2 contenteditable="true" name="editedText">{{ corrected_text | safe }}</h2>
       <button type="submit">check</button>
+      <button type="submit">submit edit</button>
     </form>
 
     <div id="sidebar">
-      <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
       <div id="suggContainer">
         <div id="suggestionCard" class="hidden">
           <h3 id="error"></h3>
           <p id="suggestions"></p>
         </div>
       </div>
-      <button type="submit">submit edit</button>
     </div>
   </div>
 

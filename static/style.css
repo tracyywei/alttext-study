@@ -13,6 +13,7 @@ h2 {
   font-size: 18px;
   color: rgb(0, 16, 135);
   margin: 0.5rem;
+  margin-top: 2rem;
 }
 
 input {
@@ -50,10 +51,12 @@ button {
 }
 
 #suggestionCard {
-  background-color: rgb(166, 218, 255);
+  border-style: solid;
+  border-color: red;
   padding: 1rem;
   border-radius: 0.8rem;
   margin-bottom: 0.75rem;
+  color: red;
 }
 
 #suggestionCard.hidden {
