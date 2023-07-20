@@ -50,13 +50,18 @@ button {
   cursor: pointer;
 }
 
+.resolve {
+  width: 2rem;
+  height: 2rem;
+}
+
 #suggestionCard {
   border-style: solid;
   border-color: red;
-  padding: 1rem;
   border-radius: 0.8rem;
   margin-bottom: 0.75rem;
   color: red;
+  padding: 1rem;
 }
 
 #suggestionCard.hidden {
