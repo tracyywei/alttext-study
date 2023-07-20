@@ -6,21 +6,31 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script>
     $(document).ready(function () {
       var suggestions = JSON.parse('{{ suggestions|safe }}');
+      var clickedWords = new Set(); // Store the already clicked misspelled words
 
       $(".misspelled").click(function () {
         var word = $(this).data("word");
-        var suggestion = suggestions[word];
-        var elem = document.querySelector("#suggestionCard").cloneNode(true);
-        elem.classList.remove("hidden");
-        elem.querySelector("#error").textContent = "Spelling mistake for " + word;
-        elem.querySelector("#suggestions").textContent = "You may mean: " + suggestion;
-        document.querySelector("#suggContainer").append(elem);
+        if (!clickedWords.has(word)) { // Check if the word has not been clicked before
+          clickedWords.add(word); // Add the word to the clickedWords set
+          var suggestion = suggestions[word];
+          var elem = document.querySelector("#suggestionCard").cloneNode(true);
+          elem.classList.remove("hidden");
+          elem.querySelector("#error").textContent = "Spelling mistake for " + word;
+          elem.querySelector("#suggestions").textContent = "You may mean: " + suggestion;
+          elem.querySelector(".suggButton").addEventListener("click", function () {
+            elem.remove(); // Remove the suggestion card from the DOM when the "resolve" button is clicked
+            $(".misspelled[data-word='" + word + "']").removeClass("misspelled"); // Remove the misspelled styling
+          });
+          document.querySelector("#suggContainer").append(elem);
+        }
       });
     });
   </script>
+
 </head>
 
 <body>
@@ -29,10 +39,14 @@
   </header>
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">
-      <input id="text-input" placeholder="enter text here..." name="myText"></input>
-      <h2 contenteditable="true" name="editedText">{{ corrected_text | safe }}</h2>
-      <button type="submit">check</button>
-      <button type="submit">submit edit</button>
+      <div class="buttonContainer">
+        <input id="text-input" placeholder="enter text here..." name="myText"></input>     
+        <button type="submit">check</button>   
+      </div>
+      <div class="buttonContainer">
+        <h2 contenteditable="true" name="editedText">{{ corrected_text | safe }}</h2>
+        <button type="submit">submit edit</button>
+      </div>
     </form>
 
     <div id="sidebar">
@@ -40,7 +54,7 @@
         <div id="suggestionCard" class="hidden">
           <h3 id="error"></h3>
           <p id="suggestions"></p>
-          <img class="resolve" src="{{ url_for('static', filename='images/added.png') }}" alt="R button">
+          <button type="submit" class="suggButton">resolve</button>
         </div>
       </div>
     </div>
