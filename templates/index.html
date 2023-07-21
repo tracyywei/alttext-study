@@ -4,38 +4,16 @@
 <head>
   <title>Spellcheck</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <script>
-    $(document).ready(function () {
-      var suggestions = JSON.parse('{{ suggestions|safe }}');
-      var clickedWords = new Set(); // Store the already clicked misspelled words
-
-      $(".misspelled").click(function () {
-        var word = $(this).data("word");
-        if (!clickedWords.has(word)) { // Check if the word has not been clicked before
-          clickedWords.add(word); // Add the word to the clickedWords set
-          var suggestion = suggestions[word];
-          var elem = document.querySelector("#suggestionCard").cloneNode(true);
-          elem.classList.remove("hidden");
-          elem.querySelector("#error").textContent = "Spelling mistake for " + word;
-          elem.querySelector("#suggestions").textContent = "You may mean: " + suggestion;
-          elem.querySelector(".suggButton").addEventListener("click", function () {
-            elem.remove(); // Remove the suggestion card from the DOM when the "resolve" button is clicked
-            $(".misspelled[data-word='" + word + "']").removeClass("misspelled"); // Remove the misspelled styling
-          });
-          document.querySelector("#suggContainer").append(elem);
-        }
-      });
-    });
+    var suggestionsData = JSON.parse('{{ suggestions|safe }}');
   </script>
-
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 
 <body>
   <header>
-    <h1>spellcheck</h1>
+    <h1>spellcheck ✏️</h1>
   </header>
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">
@@ -59,7 +37,6 @@
       </div>
     </div>
   </div>
-
 </body>
 
 </html>

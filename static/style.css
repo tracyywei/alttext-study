@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -59,7 +59,7 @@ input {
 button {
   font-family: "Roboto", sans-serif;
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 1rem;
   font-size: 1rem;
   color: white;
@@ -93,6 +93,11 @@ h2 {
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+
+#suggestionCard > button {
+  color: black;
+  background-color: #ffcfcb;
 }
 
 #suggestionCard.hidden {
