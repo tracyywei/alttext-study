@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Spellcheck</title>
+  <title>Alt Text Check</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
@@ -13,8 +13,11 @@
 
 <body>
   <header>
-    <h1>spellcheck ✏️</h1>
+    <h1>alt text check ✏️</h1>
   </header>
+  <div class="imageContainer">
+    <img src="https://umbrellacreative.com.au/wp-content/uploads/2020/01/hide-the-pain-harold-why-you-should-not-use-stock-photos-1024x683.jpg">
+  </div>
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">
       <div class="buttonContainer">
