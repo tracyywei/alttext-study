@@ -16,16 +16,13 @@
     <h1>alt text check ✏️</h1>
   </header>
   <div class="imageContainer">
-    <img src="{{ uploaded_image }}" alt="Uploaded Image">
+    <img src="{{ image_url }}" alt="Uploaded Image">
+    <p>{{ context | safe }}</p>
   </div>
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">
       <div class="buttonContainer">
-        <input id="text-input" placeholder="enter text here..." name="myText"></input>     
-        <button type="submit">check</button>   
-      </div>
-      <div class="buttonContainer">
-        <h2 contenteditable="true" name="editedText">{{ blip_beam | safe }}</h2>
+        <h2 contenteditable="true" name="editedText">{{ blip_beam_text | safe }}</h2>
         <button type="submit">submit edit</button>
       </div>
     </form>

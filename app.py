@@ -13,14 +13,17 @@ data_folder = os.path.join(app.root_path, 'data')  # Path to the 'data' folder
 def get_random_data():
     csv_file = os.path.join(data_folder, 'generated_captions_web.csv')
     df = pd.read_csv(csv_file)
-    random_row = df.sample(n=1).iloc[0]
-    image_url = random_row['image']
-    blip_beam_text = random_row['blip_beam']
-    return image_url, blip_beam_text
+    random_row = df.sample(n=1)
+    article_name = random_row['article_id'].values[0]
+    image_url = random_row['image'].values[0]
+    blip_beam_text = random_row['blip_beam'].values[0]
+    context = random_row['context'].values[0]
+    return image_url, blip_beam_text, context
 
 
 @app.route('/', methods=["GET", "POST"])
 def getText():
+    image_url, blip_beam_text, context = get_random_data()
     if request.method == "POST":
         myText = request.form.get("myText")
         wordList = myText.split()
@@ -35,22 +38,17 @@ def getText():
             else:
                 corrected_text += word + ' '
 
-        return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), uploaded_image=None, blip_beam=None)
+        return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), image_url=image_url, blip_beam_text=blip_beam_text, context=context)
         pass
 
-    image_url, blip_beam_text = get_random_data()
-
-    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text)
+    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context)
 
 
 @app.route("/")
 def index():
-     # Get a random row from the CSV file and pass the image URL and 'blip_beam' value to the template
-    random_row = get_random_row_from_csv()
-    uploaded_image = random_row['image'] if 'image' in random_row else None
-    blip_beam = random_row['blip_beam'] if 'blip_beam' in random_row else None
+    image_url, blip_beam_text = get_random_data()
+    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context)
 
-    return render_template("index.html", corrected_text="", suggestions={}, uploaded_image=uploaded_image, blip_beam=blip_beam)
 
 
 if __name__ == "__main__":
