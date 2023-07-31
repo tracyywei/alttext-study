@@ -16,7 +16,7 @@
     <h1>alt text check ✏️</h1>
   </header>
   <div class="imageContainer">
-    <img src="https://umbrellacreative.com.au/wp-content/uploads/2020/01/hide-the-pain-harold-why-you-should-not-use-stock-photos-1024x683.jpg">
+    <img src="{{ uploaded_image }}" alt="Uploaded Image">
   </div>
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">
@@ -25,7 +25,7 @@
         <button type="submit">check</button>   
       </div>
       <div class="buttonContainer">
-        <h2 contenteditable="true" name="editedText">{{ corrected_text | safe }}</h2>
+        <h2 contenteditable="true" name="editedText">{{ blip_beam | safe }}</h2>
         <button type="submit">submit edit</button>
       </div>
     </form>
