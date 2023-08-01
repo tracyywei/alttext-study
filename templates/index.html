@@ -17,7 +17,10 @@
   </header>
   <div class="imageContainer">
     <img src="{{ image_url }}" alt="Uploaded Image">
-    <p>{{ context | safe }}</p>
+    <div class="contextContainer">
+      <h2>{{ article_name | safe }}</h2>
+      <p>{{ context | safe }}</p>
+    </div>
   </div>
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="post">

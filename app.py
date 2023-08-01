@@ -14,16 +14,16 @@ def get_random_data():
     csv_file = os.path.join(data_folder, 'generated_captions_web.csv')
     df = pd.read_csv(csv_file)
     random_row = df.sample(n=1)
-    article_name = random_row['article_id'].values[0]
+    article_name = random_row['articlenames'].values[0]
     image_url = random_row['image'].values[0]
     blip_beam_text = random_row['blip_beam'].values[0]
     context = random_row['context'].values[0]
-    return image_url, blip_beam_text, context
+    return image_url, blip_beam_text, context, article_name
 
 
 @app.route('/', methods=["GET", "POST"])
 def getText():
-    image_url, blip_beam_text, context = get_random_data()
+    image_url, blip_beam_text, context, article_name = get_random_data()
     if request.method == "POST":
         myText = request.form.get("myText")
         wordList = myText.split()
@@ -38,16 +38,16 @@ def getText():
             else:
                 corrected_text += word + ' '
 
-        return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), image_url=image_url, blip_beam_text=blip_beam_text, context=context)
+        return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
         pass
 
-    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context)
+    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
 
 @app.route("/")
 def index():
-    image_url, blip_beam_text = get_random_data()
-    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context)
+    image_url, blip_beam_text, context, article_name = get_random_data()
+    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
 
 
