@@ -21,11 +21,15 @@ def get_random_data():
     return image_url, blip_beam_text, context, article_name
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
 def getText():
     image_url, blip_beam_text, context, article_name = get_random_data()
-    if request.method == "POST":
-        myText = request.form.get("myText")
+
+    # Get the editedText parameter from the query string
+    myText = blip_beam_text
+    
+    if myText:
+        # Perform the spell check if editedText is not empty
         wordList = myText.split()
         misspelled = spell.unknown(wordList)
         corrected_text = ""
@@ -38,16 +42,45 @@ def getText():
             else:
                 corrected_text += word + ' '
 
-        return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
-        pass
+        return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
-    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+    # If editedText is not provided in the query string, render the template without spell check
+    return render_template("index.html", corrected_text=blip_beam_text, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
 
-@app.route("/")
-def index():
-    image_url, blip_beam_text, context, article_name = get_random_data()
-    return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+
+# @app.route('/', methods=["GET", "POST"])
+# def getText():
+#     image_url, blip_beam_text, context, article_name = get_random_data()
+
+#     # spellcheck
+#     myText = request.args.get("editedText")
+#     wordList = myText.split()
+#     misspelled = spell.unknown(wordList)
+#     corrected_text = ""
+#     suggestions = {}
+#     for word in wordList:
+#         if word in misspelled:
+#             corrected_text += '<span class="misspelled" data-word="' + \
+#                 word + '">' + word + '</span> '
+#             suggestions[word] = spell.correction(word)
+#         else:
+#             corrected_text += word + ' '
+    
+#     # submit edit button clicked
+#     # if request.method == "POST":
+#         ##
+
+#         # return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+#         # pass
+
+#     return render_template("index.html", corrected_text=corrected_text, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+
+
+# @app.route("/")
+# def index():
+#     image_url, blip_beam_text, context, article_name = get_random_data()
+#     return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
 
 
