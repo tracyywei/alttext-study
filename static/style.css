@@ -34,7 +34,7 @@ header {
 }
 
 .imageContainer > img {
-  width: 20rem;
+  width: 30rem;
 }
 
 .contextContainer {
@@ -96,6 +96,10 @@ h2 {
   border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
   width: 85%;
+}
+
+#editedText {
+  color: lightgray;
 }
 
 .misspelled {
