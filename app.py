@@ -4,7 +4,7 @@ import random
 import pandas as pd
 from flask import Flask, request, render_template
 from spellchecker import SpellChecker
-from preprocessing import properNounFix
+from preprocessing import preprocess
 
 app = Flask(__name__, template_folder='templates')
 spell = SpellChecker()
@@ -27,7 +27,7 @@ def getText():
     image_url, blip_beam_text, context, article_name = get_random_data()
 
     # preprocessing
-    myText = properNounFix(blip_beam_text)
+    myText = preprocess(blip_beam_text)
     
     if myText:
         # Perform the spell check if editedText is not empty
