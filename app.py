@@ -4,6 +4,7 @@ import random
 import pandas as pd
 from flask import Flask, request, render_template
 from spellchecker import SpellChecker
+from suggestions import pronounFix
 
 app = Flask(__name__, template_folder='templates')
 spell = SpellChecker()
@@ -29,6 +30,9 @@ def getText():
     myText = blip_beam_text
     
     if myText:
+        # perform pronoun capitalizationn fix
+        myText = pronounFix(myText)
+
         # Perform the spell check if editedText is not empty
         wordList = myText.split()
         misspelled = spell.unknown(wordList)
