@@ -13,4 +13,5 @@ def pronounFix(genText):
       text += str(tok)
     text += " "
   
+  print(text)
   return text

@@ -25,7 +25,7 @@
   <div class="widthContainer">
     <form id="textarea" action="{{ url_for('getText')}}" method="get">
       <div class="buttonContainer">
-        <h2 contenteditable="true" name="editedText">{{ blip_beam_text | safe }}</h2>
+        <h2 contenteditable="true" name="editedText">{{ corrected_text | safe }}</h2>
         <button type="submit">submit edit</button>
       </div>
     </form>

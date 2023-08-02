@@ -4,7 +4,7 @@ import random
 import pandas as pd
 from flask import Flask, request, render_template
 from spellchecker import SpellChecker
-from suggestions import pronounFix
+from preprocessing import pronounFix
 
 app = Flask(__name__, template_folder='templates')
 spell = SpellChecker()
@@ -26,13 +26,10 @@ def get_random_data():
 def getText():
     image_url, blip_beam_text, context, article_name = get_random_data()
 
-    # Get the editedText parameter from the query string
-    myText = blip_beam_text
+    # preprocessing
+    myText = pronounFix(blip_beam_text)
     
     if myText:
-        # perform pronoun capitalizationn fix
-        myText = pronounFix(myText)
-
         # Perform the spell check if editedText is not empty
         wordList = myText.split()
         misspelled = spell.unknown(wordList)
@@ -46,10 +43,10 @@ def getText():
             else:
                 corrected_text += word + ' '
 
-        return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+        return render_template("index.html", corrected_text=myText, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
-    # If editedText is not provided in the query string, render the template without spell check
-    return render_template("index.html", corrected_text=blip_beam_text, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+    
+    return render_template("index.html", corrected_text=myText, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
 
 
