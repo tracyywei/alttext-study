@@ -5,6 +5,7 @@ import pandas as pd
 from flask import Flask, request, render_template
 from spellchecker import SpellChecker
 from preprocessing import preprocess
+from suggestions import suggestNames
 
 app = Flask(__name__, template_folder='templates')
 spell = SpellChecker()
@@ -28,61 +29,23 @@ def getText():
 
     # preprocessing
     myText = preprocess(blip_beam_text)
-    
-    if myText:
-        # Perform the spell check if editedText is not empty
-        wordList = myText.split()
-        misspelled = spell.unknown(wordList)
-        corrected_text = ""
-        suggestions = {}
-        for word in wordList:
-            if word in misspelled:
-                corrected_text += '<span class="misspelled" data-word="' + \
-                    word + '">' + word + '</span> '
-                suggestions[word] = spell.correction(word)
-            else:
-                corrected_text += word + ' '
-
-        return render_template("index.html", corrected_text=myText, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
-
-    
     return render_template("index.html", corrected_text=myText, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
-
-
-
-# @app.route('/', methods=["GET", "POST"])
-# def getText():
-#     image_url, blip_beam_text, context, article_name = get_random_data()
-
-#     # spellcheck
-#     myText = request.args.get("editedText")
-#     wordList = myText.split()
-#     misspelled = spell.unknown(wordList)
-#     corrected_text = ""
-#     suggestions = {}
-#     for word in wordList:
-#         if word in misspelled:
-#             corrected_text += '<span class="misspelled" data-word="' + \
-#                 word + '">' + word + '</span> '
-#             suggestions[word] = spell.correction(word)
-#         else:
-#             corrected_text += word + ' '
     
-#     # submit edit button clicked
-#     # if request.method == "POST":
-#         ##
+    # if myText:
+    #     # Perform the spell check if editedText is not empty
+    #     wordList = myText.split()
+    #     misspelled = spell.unknown(wordList)
+    #     corrected_text = ""
+    #     suggestions = {}
+    #     for word in wordList:
+    #         if word in misspelled:
+    #             corrected_text += '<span class="misspelled" data-word="' + \
+    #                 word + '">' + word + '</span> '
+    #             suggestions[word] = spell.correction(word)
+    #         else:
+    #             corrected_text += word + ' '
 
-#         # return render_template("index.html", corrected_text=corrected_text, suggestions=json.dumps(suggestions), image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
-#         # pass
-
-#     return render_template("index.html", corrected_text=corrected_text, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
-
-
-# @app.route("/")
-# def index():
-#     image_url, blip_beam_text, context, article_name = get_random_data()
-#     return render_template("index.html", corrected_text="", suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
-
+    #     return render_template("index.html", corrected_text=myText, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
 
 
 if __name__ == "__main__":
