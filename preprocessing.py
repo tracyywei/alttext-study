@@ -1,7 +1,8 @@
 import spacy
 nlp = spacy.load("en_core_web_sm")
 
-def pronounFix(genText):
+# capitalize proper nouns
+def properNounFix(genText):
   doc = nlp(genText)
 
   text = ""
@@ -13,5 +14,12 @@ def pronounFix(genText):
       text += str(tok)
     text += " "
   
-  print(text)
+  return text
+
+# remove leading "an image of" and "there is"
+def removeLeading(text):
+  if text.index('an image of') == 0:
+    text = text.replace('an image of', '')
+  if text.index('there is') == 0:
+    text = text.replace('there is', '')
   return text
