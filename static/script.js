@@ -7,6 +7,7 @@ $(document).ready(function () {
     if (!clickedWords.has(word)) {
       clickedWords.add(word);
       var suggestion = suggestions[word];
+      console.log(suggestion);
       var elem = document.querySelector("#suggestionCard").cloneNode(true);
       elem.classList.remove("hidden");
       elem.querySelector("#error").textContent = "Spelling mistake for " + word;

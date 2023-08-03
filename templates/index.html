@@ -7,8 +7,30 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     var suggestionsData = JSON.parse('{{ suggestions|safe }}');
+    $(document).ready(function () {
+    var suggestions = suggestionsData;
+    var clickedWords = new Set();
+
+    $("#textarea").on("click", ".misspelled", function () {
+      var word = $(this).data("word");
+      console.log(word);
+      if (!clickedWords.has(word)) {
+        clickedWords.add(word);
+        var suggestion = suggestions[word];
+        var elem = document.querySelector("#suggestionCard").cloneNode(true);
+        elem.classList.remove("hidden");
+        elem.querySelector("#error").textContent = "Fill in the name(s) for " + word;
+        elem.querySelector("#suggestions").textContent = "Does '" + word + "' refer to any of these names: " + suggestion;
+        elem.querySelector(".suggButton").addEventListener("click", function () {
+          elem.remove();
+          $(".misspelled[data-word='" + word + "']").removeClass("misspelled");
+        });
+        document.querySelector("#suggContainer").append(elem);
+      }
+    });
+  });
   </script>
-  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+  <!-- <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script> -->
 </head>
 
 <body>

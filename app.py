@@ -5,7 +5,7 @@ import pandas as pd
 from flask import Flask, request, render_template
 from spellchecker import SpellChecker
 from preprocessing import preprocess
-from suggestions import suggestNames
+from suggestions import applySugg
 
 app = Flask(__name__, template_folder='templates')
 spell = SpellChecker()
@@ -29,7 +29,8 @@ def getText():
 
     # preprocessing
     myText = preprocess(blip_beam_text)
-    return render_template("index.html", corrected_text=myText, suggestions={}, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+    corrected_text, suggestions = applySugg(myText, context)
+    return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
     
     # if myText:
     #     # Perform the spell check if editedText is not empty
