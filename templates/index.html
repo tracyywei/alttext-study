@@ -38,7 +38,10 @@
     <h1>alt text check ✏️</h1>
   </header>
   <div class="imageContainer">
-    <img src="{{ image_url }}" alt="Uploaded Image">
+    <div class="captionContainer">
+      <img src="{{ image_url }}">
+      <p>{{ caption | safe }}</p>
+    </div>
     <div class="contextContainer">
       <h2>{{ article_name | safe }}</h2>
       <p>{{ context | safe }}</p>

@@ -37,6 +37,16 @@ header {
   width: 30rem;
 }
 
+.captionContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.captionContainer > p {
+  font-size: 1rem;
+  font-style: italic;
+}
+
 .contextContainer {
   padding: 1rem;
   margin-left: 1rem;

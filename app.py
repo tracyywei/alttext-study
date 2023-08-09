@@ -20,17 +20,18 @@ def get_random_data():
     image_url = random_row['image'].values[0]
     blip_beam_text = random_row['blip_beam'].values[0]
     context = random_row['context'].values[0]
-    return image_url, blip_beam_text, context, article_name
+    caption = random_row['image_descrip'].values[0]
+    return image_url, blip_beam_text, context, article_name, caption
 
 
 @app.route('/', methods=["GET"])
 def getText():
-    image_url, blip_beam_text, context, article_name = get_random_data()
+    image_url, blip_beam_text, context, article_name, caption = get_random_data()
 
     # preprocessing
     myText = preprocess(blip_beam_text)
     corrected_text, suggestions = applySugg(myText, context)
-    return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name)
+    return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name, caption=caption)
     
     # if myText:
     #     # Perform the spell check if editedText is not empty
