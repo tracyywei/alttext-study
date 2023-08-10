@@ -37,3 +37,23 @@ def suggestNames(context):
 
 def checkNumber(text):
   return text
+
+
+from spellchecker import SpellChecker
+
+def spellCheck(text):
+  spell = SpellChecker()
+  wordList = myText.split()
+  misspelled = spell.unknown(wordList)
+  corrected_text = ""
+  suggestions = {}
+  for word in wordList:
+      if word in misspelled:
+          corrected_text += '<span class="misspelled" data-word="' + \
+              word + '">' + word + '</span> '
+          suggestions[word] = spell.correction(word)
+      else:
+          corrected_text += word + ' '
+  suggestions_json = json.dumps(suggestions)
+
+  return corrected_text, suggestions_json

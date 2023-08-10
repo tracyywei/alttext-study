@@ -10,7 +10,8 @@
     $(document).ready(function () {
     var suggestions = suggestionsData;
     var clickedWords = new Set();
-
+    
+    // suggestions for names
     $("#textarea").on("click", ".misspelled", function () {
       var word = $(this).data("word");
       console.log(word);
@@ -30,7 +31,6 @@
     });
   });
   </script>
-  <!-- <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script> -->
 </head>
 
 <body>
