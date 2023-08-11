@@ -8,38 +8,51 @@
   <script>
     var suggestionsData = JSON.parse('{{ suggestions|safe }}');
     $(document).ready(function () {
-    var suggestions = suggestionsData;
-    var clickedWords = new Set();
-    
-    // suggestions for names
-    $("#textarea").on("click", ".misspelled", function () {
-      var word = $(this).data("word");
-      console.log(word);
-      if (!clickedWords.has(word)) {
-        clickedWords.add(word);
-        var suggestion = suggestions[word];
-        var elem = document.querySelector("#suggestionCard").cloneNode(true);
-        elem.classList.remove("hidden");
-        elem.querySelector("#error").textContent = "Fill in the name(s) for " + word;
-        elem.querySelector("#suggestions").textContent = "Does '" + word + "' refer to any of these names: " + suggestion;
-        elem.querySelector(".suggButton").addEventListener("click", function () {
-          elem.remove();
-          $(".misspelled[data-word='" + word + "']").removeClass("misspelled");
-        });
-        document.querySelector("#suggContainer").append(elem);
-      }
+
+      // sending the edited text, original text, and image url to back end
+      $("#textarea").submit(function (event) {
+        var editedText = $("h2[contenteditable='true']").text();
+        $("#editedText").val(editedText);
+
+        var origText = document.querySelector("#origText").textContent;
+        document.querySelector("#ogText").value = origText;
+
+        var origImg = document.querySelector("#wikiphoto").src;
+        document.querySelector("#ogImg").value = origImg;
+      });
+
+      var suggestions = suggestionsData;
+      var clickedWords = new Set();
+      
+      // suggestions for names
+      $("#textarea").on("click", ".misspelled", function () {
+        var word = $(this).data("word");
+        console.log(word);
+        if (!clickedWords.has(word)) {
+          clickedWords.add(word);
+          var suggestion = suggestions[word];
+          var elem = document.querySelector("#suggestionCard").cloneNode(true);
+          elem.classList.remove("hidden");
+          elem.querySelector("#error").textContent = "Fill in the name(s) for " + word;
+          elem.querySelector("#suggestions").textContent = "Does '" + word + "' refer to any of these names: " + suggestion;
+          elem.querySelector(".suggButton").addEventListener("click", function () {
+            elem.remove();
+            $(".misspelled[data-word='" + word + "']").removeClass("misspelled");
+          });
+          document.querySelector("#suggContainer").append(elem);
+        }
+      });
     });
-  });
   </script>
 </head>
 
 <body>
   <header>
-    <h1>alt text check ✏️</h1>
+    <h1>Alt Text Check ✏️</h1>
   </header>
   <div class="imageContainer">
     <div class="captionContainer">
-      <img src="{{ image_url }}">
+      <img src="{{ image_url }}" id="wikiphoto">
       <p>{{ caption | safe }}</p>
     </div>
     <div class="contextContainer">
@@ -48,19 +61,23 @@
     </div>
   </div>
   <div class="widthContainer">
-    <form id="textarea" action="{{ url_for('getText')}}" method="get">
       <div class="buttonContainer">
-        <h2 contenteditable="true" name="editedText">{{ corrected_text | safe }}</h2>
-        <button type="submit">submit edit</button>
+        <form id="textarea" action="{{ url_for('getText')}}" method="post">
+          <input type="hidden" name="editedText" id="editedText">
+          <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
+          <input type="hidden" name="ogText" id="ogText">
+          <input type="hidden" name="ogImg" id="ogImg">
+          <p hidden id="origText">{{ corrected_text | safe }}</p>
+          <button type="submit">Submit my edit</button>
+        </form>
       </div>
-    </form>
-
+    
     <div id="sidebar">
       <div id="suggContainer">
         <div id="suggestionCard" class="hidden">
           <h3 id="error"></h3>
           <p id="suggestions"></p>
-          <button type="submit" class="suggButton">resolve</button>
+          <button type="submit" class="suggButton">Resolve</button>
         </div>
       </div>
     </div>
