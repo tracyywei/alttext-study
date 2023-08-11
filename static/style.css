@@ -58,14 +58,13 @@ header {
 
 .buttonContainer {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   width: 100%;
 }
 
 .buttonContainer > button {
   margin-left: 1rem;
   height: 1rem;
-  width: fit-content;
 }
 
 #textarea {
