@@ -46,23 +46,20 @@
   </script>
 </head>
 
+
 <body>
-  <header>
-    <h1>Alt Text Check ✏️</h1>
-  </header>
-  <div class="imageContainer">
+  <div class="contextContainer">
+    <h2>{{ article_name | safe }}</h2>
+    <p>{{ context | safe }}</p>
+  </div>
+  <div class="widthContainer">
     <div class="captionContainer">
       <img src="{{ image_url }}" id="wikiphoto">
       <p>{{ caption | safe }}</p>
     </div>
-    <div class="contextContainer">
-      <h2>{{ article_name | safe }}</h2>
-      <p>{{ context | safe }}</p>
-    </div>
-  </div>
-  <div class="widthContainer">
       <div class="buttonContainer">
         <form id="textarea" action="{{ url_for('getText')}}" method="post">
+          <p>⚠️ Please edit the following alt-text for the provided Wikipedia image. Note: Your edits will be added to Wikipedia, so please carefully review and correct the alt-text.</p>
           <input type="hidden" name="editedText" id="editedText">
           <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
           <input type="hidden" name="ogText" id="ogText">
