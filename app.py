@@ -2,7 +2,7 @@ import json
 import os
 import random
 import pandas as pd
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from preprocessing import preprocess
 from suggestions import applySugg
 import time
@@ -67,6 +67,39 @@ def getText():
             json.dump(existing_data, outfile, indent=4)
 
     return render_template("index.html", corrected_text=corrected_text, suggestions=suggestions, image_url=image_url, blip_beam_text=blip_beam_text, context=context, article_name=article_name, caption=caption)
+
+@app.route('/skip', methods=["GET", "POST"])
+def skip():
+
+    if request.method == "POST":
+
+        orig_text = request.form.get("ogText-skip", "")
+        image = request.form.get("ogImg-skip", "")
+        reason = request.form['options']
+
+        dictionary = {
+            "orig_text": orig_text,
+            "image": image,
+            "reason": reason
+        }
+        
+        # Writing to json
+        saved_file_path = os.path.join(data_folder, 'skipped.json')
+        
+        # Load existing data from the file if available
+        existing_data = []
+        if os.path.exists(saved_file_path):
+            with open(saved_file_path, "r") as infile:
+                existing_data = json.load(infile)
+        
+        # Append the new data entry
+        existing_data.append(dictionary)
+        
+        # Write the updated data back to the file
+        with open(saved_file_path, "w") as outfile:
+            json.dump(existing_data, outfile, indent=4)
+
+        return redirect('/')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", debug=True)

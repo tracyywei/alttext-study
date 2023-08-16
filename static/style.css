@@ -85,7 +85,7 @@ img {
   height: 1rem;
 }
 
-#textarea {
+#textareaContainer {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -100,7 +100,12 @@ img {
   padding-bottom: 1.5rem;
 }
 
-input {
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.editedText {
   font-family: "Roboto", sans-serif;
   border: none;
   border-radius: 8px;
@@ -161,4 +166,12 @@ button {
 
 #suggestionCard.hidden {
   display: none;
+}
+
+#skipCur {
+  padding-top: 2rem;
+}
+
+#skipCur > button {
+  margin-top: 1rem;
 }

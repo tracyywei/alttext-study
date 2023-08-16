@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<meta http-equiv="pragma" content="no-cache" />
 <head>
   <title>Alt Text Check</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
@@ -19,6 +19,16 @@
 
         var origImg = document.querySelector("#wikiphoto").src;
         document.querySelector("#ogImg").value = origImg;
+      });
+
+      // sending the original text, and image url to back end
+      $("#skipCur").submit(function (event) {
+
+        var origText = document.querySelector("#origText").textContent;
+        document.querySelector("#ogText-skip").value = origText;
+
+        var origImg = document.querySelector("#wikiphoto").src;
+        document.querySelector("#ogImg-skip").value = origImg;
       });
 
       var suggestions = suggestionsData;
@@ -58,15 +68,34 @@
       <p>{{ caption | safe }}</p>
     </div>
       <div class="buttonContainer">
-        <form id="textarea" action="{{ url_for('getText')}}" method="post">
-          <p>⚠️ Please edit the following alt-text for the provided Wikipedia image. Note: Your edits will be added to Wikipedia, so please carefully review and correct the alt-text.</p>
-          <input type="hidden" name="editedText" id="editedText">
-          <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
-          <input type="hidden" name="ogText" id="ogText">
-          <input type="hidden" name="ogImg" id="ogImg">
-          <p hidden id="origText">{{ corrected_text | safe }}</p>
-          <button type="submit">Submit my edit</button>
-        </form>
+        <div id="textareaContainer">
+           <form id="textarea" action="{{ url_for('getText')}}" method="post">
+            <p>⚠️ Please edit the following alt-text for the provided Wikipedia image. Note: Your edits will be added to Wikipedia, so please carefully review and correct the alt-text.</p>
+            <input type="hidden" name="editedText" id="editedText">
+            <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
+            <input type="hidden" name="ogText" id="ogText">
+            <input type="hidden" name="ogImg" id="ogImg">
+            <p hidden id="origText">{{ corrected_text | safe }}</p>
+            <button type="submit">Submit my edit</button>
+          </form>  
+          <form id="skipCur" action="{{ url_for('skip')}}" method="post">
+            <h2>Reason for skipping?</h2>
+            <input type="radio" name="options" id="option1" value="Unsure about fixing">
+            <label for="option1">Unsure how to fix the text</label><br>
+            <input type="radio" name="options" id="option2" value="Lacks context">
+            <label for="option2">Lacking context needed to edit/write alt-text</label><br>
+            <input type="radio" name="options" id="option3" value="Graph">
+            <label for="option3">Image is a graph/diagram/chart that is difficult to describe</label><br>
+            <input type="radio" name="options" id="option4" value="Don't understand">
+            <label for="option4">I don't understand the image</label><br>
+            <input type="radio" name="options" id="option5" value="Easier image">
+            <label for="option5">I want an easier image to describe</label><br>
+            <button type="submit" form="skipCur">Skip</button>
+            <input type="hidden" name="ogText-skip" id="ogText-skip">
+            <input type="hidden" name="ogImg-skip" id="ogImg-skip">
+          </form>
+        </div>
+       
       </div>
     
     <div id="sidebar">
@@ -78,6 +107,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </body>
 
