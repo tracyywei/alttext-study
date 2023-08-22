@@ -51,7 +51,7 @@ def getText():
         }
         
         # Writing to json
-        saved_file_path = os.path.join(data_folder, 'sample.json')
+        saved_file_path = os.path.join(data_folder, 'study.json')
         
         # Load existing data from the file if available
         existing_data = []

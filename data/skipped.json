@@ -3,5 +3,10 @@
         "orig_text": "a painting of a woman holding a sword next to a man on a horse ",
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Macbeth_and_Banquo_with_the_witches_JHF.jpg/170px-Macbeth_and_Banquo_with_the_witches_JHF.jpg",
         "reason": "Don't understand"
+    },
+    {
+        "orig_text": "an old black and white drawing of a man standing in front of a group of people ",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Verdi_conducting_Aida_in_Paris_1880_-_Gallica_-_Restoration.jpg/170px-Verdi_conducting_Aida_in_Paris_1880_-_Gallica_-_Restoration.jpg",
+        "reason": "Easier image"
     }
 ]
