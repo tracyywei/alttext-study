@@ -6,108 +6,86 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-    var suggestionsData = JSON.parse('{{ suggestions|safe }}');
-    $(document).ready(function () {
+    let prolificPID;
+    window.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        prolificPID = urlParams.get('PROLIFIC_PID');
+    };
 
-      // sending the edited text, original text, and image url to back end
-      $("#textarea").submit(function (event) {
-        var editedText = $("h2[contenteditable='true']").text();
-        $("#editedText").val(editedText);
-
-        var origText = document.querySelector("#origText").textContent;
-        document.querySelector("#ogText").value = origText;
-
-        var origImg = document.querySelector("#wikiphoto").src;
-        document.querySelector("#ogImg").value = origImg;
-      });
-
-      // sending the original text, and image url to back end
-      $("#skipCur").submit(function (event) {
-
-        var origText = document.querySelector("#origText").textContent;
-        document.querySelector("#ogText-skip").value = origText;
-
-        var origImg = document.querySelector("#wikiphoto").src;
-        document.querySelector("#ogImg-skip").value = origImg;
-      });
-
-      var suggestions = suggestionsData;
-      var clickedWords = new Set();
+    const img_url = '{{ image_url | escape }}';
+    const article_name = '{{ article_name | escape }}';
+    
+    async function submitResponse(responses) {
+        const selected = document.querySelector('input[name="options"]:checked');
+        responses.prolificPID = prolificPID;
+        responses.img_url = img_url;
+        responses.article_name = article_name;
+        responses.alttext_type = selected.value;
+        await fetch('/nextImg', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(responses),
+        });
+        window.location.href = `/eval?PROLIFIC_PID=${encodeURIComponent(prolificPID)}`;
+    };
       
-      // suggestions for names
-      $("#textarea").on("click", ".misspelled", function () {
-        var word = $(this).data("word");
-        console.log(word);
-        if (!clickedWords.has(word)) {
-          clickedWords.add(word);
-          var suggestion = suggestions[word];
-          var elem = document.querySelector("#suggestionCard").cloneNode(true);
-          elem.classList.remove("hidden");
-          elem.querySelector("#error").textContent = "Fill in the name(s) for " + word;
-          elem.querySelector("#suggestions").textContent = "Does '" + word + "' refer to any of these names: " + suggestion;
-          elem.querySelector(".suggButton").addEventListener("click", function () {
-            elem.remove();
-            $(".misspelled[data-word='" + word + "']").removeClass("misspelled");
-          });
-          document.querySelector("#suggContainer").append(elem);
-        }
+    $(document).ready(function(){
+
+      // randomizing alt-text options order
+      const options = [
+          { id: "option1", value: "no_crt_no_cnxt", label: "{{ no_crt_no_cnxt }}" },
+          { id: "option2", value: "no_crt_yes_cnxt", label: "{{ no_crt_yes_cnxt }}" },
+          { id: "option3", value: "yes_crt_no_cnxt", label: "{{ yes_crt_no_cnxt }}" },
+          { id: "option4", value: "yes_crt_yes_cnxt", label: "{{ yes_crt_yes_cnxt }}" },
+      ];
+      function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+          }
+      }
+      shuffleArray(options);
+      const optionsContainer = document.getElementById('optionsContainer');
+      options.forEach(option => {
+          const input = document.createElement('input');
+          input.type = 'radio';
+          input.name = 'options';
+          input.id = option.id;
+          input.value = option.value;
+
+          const label = document.createElement('label');
+          label.htmlFor = option.id;
+          label.innerHTML = option.label;
+
+          optionsContainer.appendChild(input);
+          optionsContainer.appendChild(label);
+          optionsContainer.appendChild(document.createElement('br'));
       });
+
+      document.getElementById('submit-button').addEventListener('click', submitResponse);
     });
   </script>
 </head>
 
 
 <body>
-  <div class="contextContainer">
-    <h2>{{ article_name | safe }}</h2>
-    <p>{{ context | safe }}</p>
-  </div>
-  <div class="widthContainer">
-    <div class="captionContainer">
-      <img src="{{ image_url }}" id="wikiphoto">
-      <p>{{ caption | safe }}</p>
+  <div class="container">
+    <div class="image-column">
+      <img src="{{ image_url }}" alt="Research image">
     </div>
-      <div class="buttonContainer">
-        <div id="textareaContainer">
-           <form id="textarea" action="{{ url_for('getText')}}" method="post">
-            <p>⚠️ Please edit the following alt-text for the provided Wikipedia image. Note: Your edits will be added to Wikipedia, so please carefully review and correct the alt-text.</p>
-            <input type="hidden" name="editedText" id="editedText">
-            <h2 contenteditable="true">{{ corrected_text | safe }}</h2>
-            <input type="hidden" name="ogText" id="ogText">
-            <input type="hidden" name="ogImg" id="ogImg">
-            <p hidden id="origText">{{ corrected_text | safe }}</p>
-            <button type="submit">Submit my edit</button>
-          </form>  
-          <form id="skipCur" action="{{ url_for('skip')}}" method="post">
-            <h2>Reason for skipping?</h2>
-            <input type="radio" name="options" id="option1" value="Unsure about fixing">
-            <label for="option1">Unsure how to fix the text</label><br>
-            <input type="radio" name="options" id="option2" value="Lacks context">
-            <label for="option2">Lacking context needed to edit/write alt-text</label><br>
-            <input type="radio" name="options" id="option3" value="Graph">
-            <label for="option3">Image is a graph/diagram/chart that is difficult to describe</label><br>
-            <input type="radio" name="options" id="option4" value="Don't understand">
-            <label for="option4">I don't understand the image</label><br>
-            <input type="radio" name="options" id="option5" value="Easier image">
-            <label for="option5">I want an easier image to describe</label><br>
-            <button type="submit" form="skipCur">Skip</button>
-            <input type="hidden" name="ogText-skip" id="ogText-skip">
-            <input type="hidden" name="ogImg-skip" id="ogImg-skip">
-          </form>
-        </div>
-       
-      </div>
-    
-    <div id="sidebar">
-      <div id="suggContainer">
-        <div id="suggestionCard" class="hidden">
-          <h3 id="error"></h3>
-          <p id="suggestions"></p>
-          <button type="submit" class="suggButton">Resolve</button>
-        </div>
+    <div class="content-column">
+      <h2>{{ article_name | safe }}</h2>
+      <p>{{ context | safe }}</p>
+      <div class="form-section">
+        <h2>Select the best alt-text for this image</h2>
+        <form id="nextImg">
+          <div id="optionsContainer"></div>
+          <button type="submit" id="submit-button">Next</button>
+        </form>
       </div>
     </div>
-
   </div>
 </body>
 

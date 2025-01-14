@@ -1,0 +1,30 @@
+[
+    {
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Aerial_view_of_McCoy_Stadium_Pawtucket_%28Quintin_Soloviev%29.jpg/220px-Aerial_view_of_McCoy_Stadium_Pawtucket_%28Quintin_Soloviev%29.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "Pawtucket_Red_Sox"
+    },
+    {
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Kaouther_Ben_Hania_-_IFFR_2024.jpg/150px-Kaouther_Ben_Hania_-_IFFR_2024.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "39th_Independent_Spirit_Awards"
+    },
+    {
+        "pid": "1abc",
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/KENTA_%2852828172837%29.jpg/220px-KENTA_%2852828172837%29.jpg",
+        "alttext_type": "no_crt_no_cnxt",
+        "article_name": "Kenta_Kobayashi"
+    },
+    {
+        "pid": "1abc",
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Brazda-klein.jpg/220px-Brazda-klein.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "Dalibor_Br\u00e1zda"
+    },
+    {
+        "pid": "1abc",
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Andrianampoinimerina_HQ.jpg/220px-Andrianampoinimerina_HQ.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "History_of_the_Jews_in_Madagascar"
+    }
+]

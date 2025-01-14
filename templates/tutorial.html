@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Evaluation Study</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+    <div class="tutorialContainer">
+        <div id="introduction" style="display: block;">
+            <h1>Alt Text Evaluation Training</h1>
+            <h2>What is alt text?</h2>
+            <p>Alternative text (or alt text) is a short visual description associated with an image that conveys essential information about the content of an image. It is structured as a sentence fragment that indicates the most important content of the image. Alt text is meant to help visitors who are blind or have low-vision access the information contained in images.</p>
+
+            <h2>Alt Text Criteria:</h2>
+            <ol>
+                <li><strong>Keep it short and clear:</strong> 1-2 lines of plain text with no acronyms, abbreviations, or jargon</li>
+                <li><strong>Describe what can be seen:</strong> Don't add your own research, interpretation, or point of view</li>
+                <li><strong>Focus on what is relevant to the article:</strong> Consider the text around it as context but don’t repeat the text</li>
+                <li><strong>Transcribe words and graphics:</strong> Write out any words in the image, in quotation marks, and summarize the main idea of maps, diagrams, and charts</li>
+                <li><strong>Type of image:</strong> Do not start with 'This is an image of…' but describe the medium or style, if relevant</li>
+                <li><strong>Take care with people:</strong> Only identify public figures and make sure any description is relevant, apparent, and verifiable</li>
+                <li><strong>Follow standard alt-text conventions:</strong> Does not begin with a label like “Alt text:”</li>
+            </ol>
+
+            <h3>Examples of Alt Text:</h3>
+            <div class="alt-text-examples">
+                <div class="alt-text-example">
+                    <p>Red triangle road sign advising “Try your brakes”</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/UK_traffic_sign_554.1.svg/440px-UK_traffic_sign_554.1.svg.png" alt="Red triangle road sign advising “Try your brakes”">
+                </div>
+                <div class="alt-text-example">
+                    <p>Black and white photograph of a narrow kitchen with a window over the sink, plus a stool, built-in storage, and adjustable lighting</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Frankfurterkueche.jpg" alt="Black and white photograph of a narrow kitchen with a window over the sink, plus a stool, built-in storage, and adjustable lighting">
+                </div>
+                <div class="alt-text-example">
+                    <p>Atlas moth on plant. Reddish-brown wings are open, revealing a wide wingspan and wing tips that resemble cobra snake heads</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Attacus_atlas_London_Zoo_01118-2.jpg/2560px-Attacus_atlas_London_Zoo_01118-2.jpg" alt="Atlas moth on plant. Reddish-brown wings are open, revealing a wide wingspan and wing tips that resemble cobra snake heads">
+                </div>
+                <div class="alt-text-example">
+                    <p>Brazilian male athlete competes in a wheelchair race. He is moving at speed so the stadium in the background is blurred.</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Wheelchair_Racing_Parapan_2007.jpg/2560px-Wheelchair_Racing_Parapan_2007.jpg" alt="Brazilian male athlete competes in a wheelchair race. He is moving at speed so the stadium in the background is blurred.">
+                </div>
+                <div class="alt-text-example">
+                    <p>Portrait of former First Lady Michelle Obama seated looking directly at us</p>
+                    <img src="https://www.cooperhewitt.org/wp-content/uploads/2021/08/NPG_2018_15-M-Obama-R_small.jpg" alt="Portrait of former First Lady Michelle Obama seated looking directly at us">
+                </div>
+                <div class="alt-text-example">
+                    <p>Blue icon of person in wheelchair in forward motion</p>
+                    <img src="https://www.cooperhewitt.org/wp-content/uploads/2019/04/icon.jpg" alt="Blue icon of person in wheelchair in forward motion">
+                </div>
+            </div>
+            <!-- <div class="start-btn-container"> -->
+              <form action="/eval" method="get">
+                <input type="hidden" name="PROLIFIC_PID" value="{{ prolific_pid }}">
+                <button button type="submit" id="start-btn">Start</button>
+              </form>
+                 
+            <!-- </div> -->
+           
+        </div>
+    </div>
+</body>
+</html>
