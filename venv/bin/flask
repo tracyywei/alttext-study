@@ -1,4 +1,4 @@
-#!/Users/tracywei/Desktop/College/CURIS/captioncheck/venv/bin/python3
+#!/Users/tracywei/Desktop/College/HCI_Research/alttext-study/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
