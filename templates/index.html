@@ -2,7 +2,7 @@
 <html>
 <meta http-equiv="pragma" content="no-cache" />
 <head>
-  <title>Alt Text Check</title>
+  <title>Alt Text Evaluation</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
@@ -67,18 +67,47 @@
       });
 
         $('#submit-button').on('click', submitResponse);
+        $('#toggle-instructions').on('click', function() {
+          $('#instructions-box').toggle();
+        });
     });
   </script>
 </head>
 
 <body>
   <div class="container">
+    <button id="toggle-instructions">See instructions</button>
+    <div id="instructions-box" style="display: none; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+      <h2>Instructions</h2>
+      <p>In this task, you will be shown images taken from Wikipedia articles, along with the article name and some additional context. Your job is to select the best alt-text description for each image based on the following criteria. You will be given four similar alt-text options, and your goal is to choose the one that best fits the guidelines below.</p>
+
+      <h2>How to Complete the Task:</h2>
+      <ol>
+          <li><strong>Review the Image:</strong> Take a moment to carefully examine the image presented to you.</li>
+          <li><strong>Read the Article Context (Optional):</strong> You may read the article name and context provided below the image. This text can help you understand the surrounding information about the image. <strong>However, you should use it only if additional context is necessary for understanding the image.</strong></li>
+          <li><strong>Review the Alt-Text Options:</strong> You will be presented with four alt-text descriptions. These are similar, but one will be the most accurate and concise based on the image and the criteria listed below.</li>
+          <li><strong>Select the Best Alt-Text Option:</strong> Choose the alt-text that best fits the alt-text criteria.</li>
+      </ol>
+
+      <h2>Alt-Text Criteria:</h2>
+      <ol>
+          <li><strong>Keep it short and clear:</strong> Alt-text should be 1-2 lines of plain text, free of acronyms, abbreviations, or jargon.</li>
+          <li><strong>Describe what can be seen:</strong> Focus only on what is visible in the image, without adding any personal interpretation or research.</li>
+          <li><strong>Focus on relevance to the article:</strong> Alt-text should align with the surrounding article content but avoid repeating it.</li>
+          <li><strong>Transcribe words and graphics:</strong> If there are words in the image, write them out in quotation marks. Summarize the main idea of maps, diagrams, and charts.</li>
+          <li><strong>Type of image:</strong> Do not begin with "This is an image of...". If applicable, describe the medium or style of the image.</li>
+          <li><strong>Take care with people:</strong> Only mention public figures if they are clearly identifiable and relevant to the image. Make sure descriptions are accurate and verifiable.</li>
+          <li><strong>Follow standard alt-text conventions:</strong> The alt-text should not start with the phrase “Alt text:”. Simply describe the image itself.</li>
+      </ol>
+
+      <p>Once you have reviewed the options, select the one that best follows these rules. Thank you for your participation!</p>
+    </div>
     <div class="image-column">
       <img src="{{ image_url }}" alt="Research image">
+      <h3>{{ article_name | safe }}</h2>
+      <p>{{ context | safe }}</p>
     </div>
     <div class="content-column">
-      <h2>{{ article_name | safe }}</h2>
-      <p>{{ context | safe }}</p>
       <div class="form-section">
         <h2>Select the best alt-text for this image</h2>
         <form id="nextImg">

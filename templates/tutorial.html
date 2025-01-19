@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Evaluation Study</title>
+<title>Alt Text Evaluation</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <!-- <div class="start-btn-container"> -->
-              <form action="/eval" method="get">
+              <form action="/instruct" method="get">
                 <input type="hidden" name="PROLIFIC_PID" value="{{ prolific_pid }}">
                 <button button type="submit" id="start-btn">Start</button>
               </form>

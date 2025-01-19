@@ -9,12 +9,12 @@ import re
 
 app = Flask(__name__, template_folder='templates')
 data_folder = os.path.join(app.root_path, 'data')  # Path to the 'data' folder
-questions_per_study = 10
-attention_check_interval = 4
+questions_per_study = 20
+attention_check_interval = 10
 
 # Function to read a random row from the CSV file
 def get_random_data():
-    csv_file = os.path.join(data_folder, 'output_alt_texts_full.csv')
+    csv_file = os.path.join(data_folder, 'output_alt_texts_cleaned.csv')
     df = pd.read_csv(csv_file)
     random_row = df.sample(n=1)
     return random_row
@@ -26,6 +26,11 @@ def sanitize_text(text):
 def startTutorial():
     prolific_pid = request.args.get("PROLIFIC_PID", "")
     return render_template("tutorial.html", prolific_pid=prolific_pid)
+
+@app.route('/instruct', methods=["GET", "POST"])
+def startInstructions():
+    prolific_pid = request.args.get("PROLIFIC_PID", "")
+    return render_template("instructions.html", prolific_pid=prolific_pid)
 
 @app.route('/eval', methods=["GET", "POST"])
 def getText():
@@ -56,8 +61,8 @@ def getText():
 
         return render_template("index.html",
                                image_url=correct_row['image_url'].values[0],
-                               context=(re.sub(r'\[\d+\]', '', correct_row['context'].values[0]))[:1000],
-                               article_name=correct_row['article_title'].values[0],
+                               context=(re.sub(r'\[.*?\]', '', correct_row['context'].values[0]))[:1000],
+                               article_name=(re.sub('_', ' ', correct_row['article_title'].values[0])),
                                options=all_options,
                                is_attention_check=is_attention_check,
                                question_count=question_count)
@@ -72,8 +77,8 @@ def getText():
 
         return render_template("index.html",
                                image_url=random_row['image_url'].values[0],
-                               context=(re.sub(r'\[\d+\]', '', random_row['context'].values[0]))[:1000],
-                               article_name=random_row['article_title'].values[0],
+                               context=(re.sub(r'\[.*?\]', '', random_row['context'].values[0]))[:1000],
+                               article_name=(re.sub('_', ' ', random_row['article_title'].values[0])),
                                options=options,
                                is_attention_check=is_attention_check,
                                question_count=question_count)
