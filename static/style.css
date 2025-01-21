@@ -177,6 +177,8 @@ button:disabled {
 }
 
 #instructions-box {
+  max-width: 300px;
+  background-color: #e2f0ff;
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 20px;
