@@ -103,6 +103,10 @@ def nextImg():
         if question_count:
             responses['question_count'] = question_count
 
+        if alttext_type == "none":
+            question_count += 1
+            return redirect(url_for('getText', question_count=question_count, PROLIFIC_PID=prolific_pid))
+
         print("[nextImg, before] question count: " + str(question_count))
         is_attention_check = (question_count == 0 or question_count % 4 == 0)
         print(is_attention_check)

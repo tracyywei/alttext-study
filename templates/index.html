@@ -16,7 +16,8 @@
         event.preventDefault();
 
         const selectedOption = document.querySelector('input[name="options"]:checked');
-        if (!selectedOption) {
+        const isNoneOption = document.getElementById('none-option-link').dataset.selected === 'true';
+        if (!selectedOption && !isNoneOption) {
             alert("Please select an option before proceeding.");
             return;
         }
@@ -25,7 +26,7 @@
             prolificPID: prolificPID,
             img_url: '{{ image_url | escape }}',
             article_name: '{{ article_name | escape }}',
-            alttext_type: selectedOption.value,
+            alttext_type: isNoneOption ? 'none' : selectedOption.value,
             question_count: '{{ question_count }}',
         };
 
@@ -66,6 +67,21 @@
           optionsContainer.append(input, label, $('<br>'));
       });
 
+      const noneOptionLink = $('<a>')
+          .attr('href', '#')
+          .attr('id', 'none-option-link')
+          .attr('data-selected', 'false')
+          .text('None of these options fit')
+          .css({ 'font-size': '0.9em', 'color': '#666', 'text-decoration': 'underline', 'cursor': 'pointer', 'padding-bottom': '2rem' });
+
+      noneOptionLink.on('click', function(event) {
+          event.preventDefault();
+          $(this).attr('data-selected', 'true');
+          $('input[name="options"]').prop('checked', false);
+          alert('Thank you for your feedback. Please proceed to the next image.');
+      });
+      optionsContainer.append(noneOptionLink, $('<br>'));
+
         $('#submit-button').on('click', submitResponse);
         $('#toggle-instructions').on('click', function() {
           $('#instructions-box').toggle();
@@ -76,8 +92,7 @@
 
 <body>
   <div class="container">
-    <button id="toggle-instructions">See alt-text criteria</button>
-    <div id="instructions-box" style="display: none; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+    <div id="instructions-box" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
       <h2>Alt-Text Criteria:</h2>
       <ol>
         <li><strong>Keep it short and clear:</strong> 1-2 lines of plain text with no acronyms, abbreviations, or jargon.</li>

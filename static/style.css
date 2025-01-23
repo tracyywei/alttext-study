@@ -160,22 +160,6 @@ button:disabled {
   margin: auto;
 }
 
-#toggle-instructions {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-#toggle-instructions:hover {
-  background-color: #0056b3;
-}
-
 #instructions-box {
   max-width: 300px;
   background-color: #e2f0ff;
