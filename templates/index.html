@@ -10,6 +10,8 @@
     window.onload = () => {
         const urlParams = new URLSearchParams(window.location.search);
         prolificPID = urlParams.get('PROLIFIC_PID');
+        studyID = urlParams.get('STUDY_PID');
+        sessionID = urlParams.get('SESSION_PID');
     };
 
     async function submitResponse(event) {
@@ -24,6 +26,8 @@
 
         const responses = {
             prolificPID: prolificPID,
+            studyID: studyID,
+            sessionID: sessionID,
             img_url: '{{ image_url | escape }}',
             article_name: '{{ article_name | escape }}',
             alttext_type: isNoneOption ? 'none' : selectedOption.value,

@@ -4,5 +4,257 @@
         "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Otto_van_Veen_-_Allegory_of_the_Temptations_of_Youth.jpg/300px-Otto_van_Veen_-_Allegory_of_the_Temptations_of_Youth.jpg",
         "alttext_type": "correct",
         "article_name": "Otto van Veen"
+    },
+    {
+        "timestamp": "2025-01-26 22:35:34",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg/220px-Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg",
+        "alttext_type": "correct",
+        "article_name": "JJ Peterka"
+    },
+    {
+        "timestamp": "2025-01-26 22:35:43",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ademola_Lookman_%282019%29_%28cropped%29.jpg/220px-Ademola_Lookman_%282019%29_%28cropped%29.jpg",
+        "alttext_type": "no_crt_no_cnxt",
+        "article_name": "African Footballer of the Year"
+    },
+    {
+        "timestamp": "2025-01-26 22:35:50",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Andrianampoinimerina_HQ.jpg/220px-Andrianampoinimerina_HQ.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "History of the Jews in Madagascar"
+    },
+    {
+        "timestamp": "2025-01-26 22:35:57",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/StadtbahnD.png/220px-StadtbahnD.png",
+        "alttext_type": "none",
+        "article_name": "D\u00fcsseldorf"
+    },
+    {
+        "timestamp": "2025-01-26 22:36:07",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Buildings_facing_River_Street%2C_Savannah%2C_Georgia.jpg/220px-Buildings_facing_River_Street%2C_Savannah%2C_Georgia.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "Savannah Cotton Exchange"
+    },
+    {
+        "timestamp": "2025-01-26 22:36:28",
+        "pid": "2rebn",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg/220px-Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg",
+        "alttext_type": "correct",
+        "article_name": "JJ Peterka"
+    },
+    {
+        "timestamp": "2025-01-26 22:36:47",
+        "pid": "534grs",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg/220px-Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg",
+        "alttext_type": "correct",
+        "article_name": "JJ Peterka"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:04",
+        "pid": "43gne",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Vannevar_Bush_portrait.jpg/220px-Vannevar_Bush_portrait.jpg",
+        "alttext_type": "correct",
+        "article_name": "Hypertext"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:10",
+        "pid": "43gne",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Larsson_fiala_12_16-3_%2853404702269%29.jpg/220px-Larsson_fiala_12_16-3_%2853404702269%29.jpg",
+        "alttext_type": "none",
+        "article_name": "Kevin Fiala"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:17",
+        "pid": "43gne",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/McLean_High_School_entrance_McLean_VA_2023-12-29_14-13-56.jpg/220px-McLean_High_School_entrance_McLean_VA_2023-12-29_14-13-56.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "Fairfax County Public Schools"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:28",
+        "pid": "43gne",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tom_Barrett_and_Sam_Tanson_FzE64ugWYAAgzeK_%281%29.jpg/220px-Tom_Barrett_and_Sam_Tanson_FzE64ugWYAAgzeK_%281%29.jpg",
+        "alttext_type": "no_crt_no_cnxt",
+        "article_name": "Sam Tanson"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:32",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Kellen_Winslow_circa_1986.jpg/170px-Kellen_Winslow_circa_1986.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "Kellen Winslow"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:34",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/John_Mayall_1970-1281_04_%28Johnny_Almond%29.jpg/220px-John_Mayall_1970-1281_04_%28Johnny_Almond%29.jpg",
+        "alttext_type": "no_crt_no_cnxt",
+        "article_name": "Johnny Almond"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:36",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Die_Slaven_in_Deutschland_1902_%28117435075%29.jpg/220px-Die_Slaven_in_Deutschland_1902_%28117435075%29.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "Prussian Lithuanians"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:38",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/09-FEB-2022_-_WS1_YYC-LGW_%28B787-9_-_C-GKKN%29_%2801%29.jpg/220px-09-FEB-2022_-_WS1_YYC-LGW_%28B787-9_-_C-GKKN%29_%2801%29.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "WestJet"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:40",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Former_President_Donald_Trump_Holds_Campaign_Rally_In_Rochester%2C_New_Hampshire_%2853481310361%29.jpg/220px-Former_President_Donald_Trump_Holds_Campaign_Rally_In_Rochester%2C_New_Hampshire_%2853481310361%29.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "2024 New Hampshire Republican presidential primary"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:42",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Eeli_Aalto_3.jpg/220px-Eeli_Aalto_3.jpg",
+        "alttext_type": "incorrect",
+        "article_name": "Eeli Aalto"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:47",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/ISS-64_Hengchun_Peninsula%2C_Taiwan.jpg/220px-ISS-64_Hengchun_Peninsula%2C_Taiwan.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "Hengchun Peninsula"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:51",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Qatar_v_Lebanon_%2816%29.jpg/220px-Qatar_v_Lebanon_%2816%29.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "Lebanon national football team"
+    },
+    {
+        "timestamp": "2025-01-26 22:37:57",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Chavundaraya_Basadi_on_Chandragiri_hill_at_Shravanabelagola.jpg/170px-Chavundaraya_Basadi_on_Chandragiri_hill_at_Shravanabelagola.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "Western Ganga dynasty"
+    },
+    {
+        "timestamp": "2025-01-26 22:38:00",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mayakovsky-SN-001.jpg/200px-Mayakovsky-SN-001.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "Vladimir Mayakovsky"
+    },
+    {
+        "timestamp": "2025-01-26 22:38:06",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Arthur_Fulton_1912_Kings_Prize.jpg/220px-Arthur_Fulton_1912_Kings_Prize.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "Arthur Fulton (sport shooter)"
+    },
+    {
+        "timestamp": "2025-01-26 22:38:12",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/HMS_Victorious_in_Singapore_in_about_December_1964_03.jpg/220px-HMS_Victorious_in_Singapore_in_about_December_1964_03.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "893 Naval Air Squadron"
+    },
+    {
+        "timestamp": "2025-01-26 22:38:16",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Gur-e_Amir_03.jpg/220px-Gur-e_Amir_03.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "Gur-e-Amir"
+    },
+    {
+        "timestamp": "2025-01-26 22:38:20",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Neches_Arena_at_Montagne_Center_LamarvsPaulQuinnMBB123023-8.jpg/220px-Neches_Arena_at_Montagne_Center_LamarvsPaulQuinnMBB123023-8.jpg",
+        "alttext_type": "yes_crt_yes_cnxt",
+        "article_name": "Montagne Center"
+    },
+    {
+        "timestamp": "2025-01-26 22:38:25",
+        "pid": "1abc",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Joanna_Scanlan_2019.jpg/130px-Joanna_Scanlan_2019.jpg",
+        "alttext_type": "yes_crt_no_cnxt",
+        "article_name": "BAFTA Award for Best Actress in a Leading Role"
+    },
+    {
+        "timestamp": "2025-01-26 23:09:01",
+        "pid": "tb4ri4",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg/220px-Buffalo_Sabres_at_Seattle_Kraken_-_October_25%2C_2022_-_Martin_Jones%2C_Vince_Dunn_and_John-Jason_Peterka_%2852458400611%29.jpg",
+        "alttext_type": "correct",
+        "article_name": "JJ Peterka"
+    },
+    {
+        "timestamp": "2025-01-26 23:09:05",
+        "pid": "tb4ri4",
+        "study_id": null,
+        "session_id": null,
+        "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ademola_Lookman_%282019%29_%28cropped%29.jpg/220px-Ademola_Lookman_%282019%29_%28cropped%29.jpg",
+        "alttext_type": "no_crt_yes_cnxt",
+        "article_name": "African Footballer of the Year"
     }
 ]
