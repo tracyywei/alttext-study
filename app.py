@@ -29,7 +29,7 @@ def assign_image_set(prolific_pid):
 
 # Function to read a random row from the CSV file based on the image ID
 def get_image_data(image_id):
-    csv_file = os.path.join(data_folder, 'alttext_subset.csv')
+    csv_file = os.path.join(data_folder, 'alttext_batch_subset.csv')
     df = pd.read_csv(csv_file)
     return df.iloc[image_id:image_id + 1]
 
@@ -219,10 +219,9 @@ def nextImg():
         is_attention_check = (question_count == 0 or question_count % 4 == 0)
 
         # If attention check and the user fails, redirect to failure page
-        if is_attention_check:
-            if alttext_type == 'incorrect': 
-                print("REDIRECT")
-                return redirect('/failed')
+        if alttext_type == 'incorrect': 
+            print("REDIRECT")
+            return redirect('/failed')
 
         dictionary = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()),
