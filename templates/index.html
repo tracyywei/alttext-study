@@ -12,6 +12,24 @@
         prolificPID = urlParams.get('PROLIFIC_PID');
         studyID = urlParams.get('STUDY_PID');
         sessionID = urlParams.get('SESSION_PID');
+
+        // Disable submit button initially
+        const submitButton = document.getElementById('submit-button');
+        let countdown = 20;
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = "#ccc";
+        submitButton.innerText = `Next (${countdown}s)`;
+        
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            submitButton.innerText = `Next (${countdown}s)`;
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                submitButton.disabled = false;
+                submitButton.style.backgroundColor = ""; // Reset to default
+                submitButton.innerText = "Next";
+            }
+        }, 1000);
     };
 
     async function submitResponse(event) {
@@ -120,7 +138,7 @@
         <h2>Select the best alt-text for this image</h2>
         <form id="nextImg">
           <div id="optionsContainer"></div>
-          <button type="submit" id="submit-button">Next</button>
+          <button type="submit" id="submit-button" disabled style="background-color: #ccc;">Next (20s)</button>
         </form>
       </div>
     </div>
