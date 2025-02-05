@@ -28,9 +28,28 @@ image_sets = {
 }
 
 def assign_image_set(prolific_pid):
-    hash_value = int(hashlib.sha256(prolific_pid.encode()).hexdigest(), 16)
-    set_index = (hash_value % 2) + 1
-    return image_sets[set_index]
+    log_file_path = os.path.join(data_folder, 'participant_log.json')
+    if os.path.exists(log_file_path):
+        with open(log_file_path, "r") as log_file:
+            try:
+                logs = json.load(log_file)
+            except json.JSONDecodeError:
+                logs = []
+    else:
+        logs = []
+
+    count_set_1 = sum(1 for log in logs if log.get("assigned_images") and log["assigned_images"][0] in image_sets[1])
+    count_set_2 = sum(1 for log in logs if log.get("assigned_images") and log["assigned_images"][0] in image_sets[2])
+
+    if count_set_1 > count_set_2:
+        chosen_set = 2
+    elif count_set_2 > count_set_1:
+        chosen_set = 1
+    else:
+        chosen_set = 1 if random.random() < 0.5 else 2  # Randomly start a new cycle
+
+    return image_sets[chosen_set]
+
 
 # Function to read a random row from the CSV file based on the image ID
 def get_image_data(image_id):
